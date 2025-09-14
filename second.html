@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Corner — Кофейня с душой</title>
+    <style>
+        /* Сброс стандартных отступов и использование современной модели размера */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Стили для тела страницы */
+        body {
+            color: #333;
+            line-height: 1.6;
+            background-color: #f8f5f2; /* Теплый кремовый фон */
+        }
+
+        /* Контейнер для ограничения ширины контента */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Навигационная панель */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #6f4e37; /* Кофейный цвет */
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #6f4e37;
+        }
+
+        /* Герой-секция с баннером */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            margin-top: 80px; /* Учитываем высоту фиксированного хедера */
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #6f4e37;
+            color: #fff;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #543b2b;
+        }
+
+        /* Секция "О нас" */
+        .about {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #6f4e37;
+        }
+
+        .about p {
+            max-width: 800px;
+            margin: 0 auto 40px;
+            font-size: 1.1rem;
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            flex: 1;
+            min-width: 250px;
+            margin: 20px;
+            padding: 30px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature i {
+            font-size: 3rem;
+            color: #6f4e37;
+            margin-bottom: 20px;
+        }
+
+        /* Секция меню */
+        .menu {
+            background-color: #543b2b;
+            color: #fff;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .menu h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+
+        .menu-items {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .menu-item {
+            background: #fff;
+            color: #333;
+            margin: 15px;
+            padding: 25px;
+            border-radius: 10px;
+            width: 280px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-item h3 {
+            color: #6f4e37;
+            margin-bottom: 15px;
+        }
+
+        /* Секция контактов */
+        .contact {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            color: #6f4e37;
+            margin-bottom: 50px;
+        }
+
+        .contact-info {
+            margin-bottom: 40px;
+        }
+
+        /* Подвал сайта */
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Для простоты скрываем на мобильных */
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            .features {
+                flex-direction: column;
+            }
+        }
+    </style>
+    <!-- Для иконок (можно подключить через CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Шапка с навигацией -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Coffee Corner</div>
+                <ul class="nav-links">
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#menu">Меню</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Главный баннер -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Начните свой день с идеальной чашки кофе</h1>
+            <p>Свежая обжарка, уютная атмосфера и мастерство барист</p>
+            <a href="#menu" class="btn">Посмотреть меню</a>
+        </div>
+    </section>
+
+    <!-- Секция "О нас" -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>Почему выбирают нас?</h2>
+            <p>В Coffee Corner мы верим, что кофе — это не просто напиток, а искусство, которое объединяет людей. Мы тщательно отбираем и обжариваем зерна, чтобы предложить вам по-настоящему уникальный вкус.</p>
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-coffee"></i>
+                    <h3>Свежая обжарка</h3>
+                    <p>Мы обжариваем зерна каждую неделю, чтобы гарантировать насыщенный и яркий вкус в каждой чашке.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-heart"></i>
+                    <h3>Готовим с любовью</h3>
+                    <p>Наши баристы — настоящие мастера своего дела, которые вкладывают душу в каждый заказ.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-home"></i>
+                    <h3>Уютная атмосфера</h3>
+                    <p>Идеальное место для работы, встреч с друзьями или уединения с любимой книгой.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция "Меню" -->
+    <section id="menu" class="menu">
+        <div class="container">
+            <h2>Наше меню</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <h3>Кофе</h3>
+                    <p>Эспрессо — 200 ₽</p>
+                    <p>Американо — 250 ₽</p>
+                    <p>Капучино — 300 ₽</p>
+                    <p>Латте — 320 ₽</p>
+                    <p>Раф — 350 ₽</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Чай</h3>
+                    <p>Черный — 200 ₽</p>
+                    <p>Зеленый — 200 ₽</p>
+                    <p>Травяной — 250 ₽</p>
+                    <p>Матча — 350 ₽</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Десерты</h3>
+                    <p>Круассан — 150 ₽</p>
+                    <p>Чизкейк — 300 ₽</p>
+                    <p>Тирамису — 320 ₽</p>
+                    <p>Печенье — 100 ₽</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция "Контакты" -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Ждем в гости</h2>
+            <div class="contact-info">
+                <p><i class="fas fa-map-marker-alt"></i> г. Брянск, Бежицкий район, бульвар 50 лет Октября, 7</p>
+                <p><i class="fas fa-phone"></i> +7 (919) 191-50-46</p>
+                <p><i class="fas fa-clock"></i> Пн-Пт: 8:00 - 22:00, Сб-Вс: 9:00 - 23:00</p>
+            </div>
+            <div style="width: 100%; height: 400px; background: #eee; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                <a href="https://yandex.ru/maps/org/bgtu_fakultet_informatsionnykh_tekhnologiy/93863542262/?utm_medium=mapframe&utm_source=maps"
+                   style="color:#eee;font-size:12px;position:absolute;top:0px;">
+                    БГТУ, Факультет информационных технологий</a>
+                <a href="https://yandex.ru/maps/191/bryansk/category/education_infrastructure/238679290081/?utm_medium=mapframe&utm_source=maps"
+                   style="color:#eee;font-size:12px;position:absolute;top:14px;">
+                    Инфраструктура образования в Брянске</a>
+                <a href="https://yandex.ru/maps/191/bryansk/category/university/184106140/?utm_medium=mapframe&utm_source=maps"
+                   style="color:#eee;font-size:12px;position:absolute;top:28px;">
+                    ВУЗ в Брянске</a>
+                <iframe src="https://yandex.ru/map-widget/v1/?ll=34.306054%2C53.304231&mode=poi&poi%5Bpoint%5D=34.303923%2C53.304088&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D93863542262&source=serp_navig&z=17.16" width="1200" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <p>© 2023 Coffee Corner. Все права защищены.</p>
+            <p>
+                <a href="#" style="color: #fff; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+                <a href="#" style="color: #fff; margin: 0 10px;"><i class="fab fa-telegram"></i></a>
+                <a href="#" style="color: #fff; margin: 0 10px;"><i class="fab fa-vk"></i></a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
